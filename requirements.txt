@@ -1,0 +1,5 @@
+fastapi[all]
+pillow
+python-multipart
+python-dotenv
+Jinja2

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <title>Image to ASCII Converter</title>
+    </head>
+    <body>
+        <h1>Upload Image Form</h1>
+        {% from "macros.html" import upload_image_form %}
+        {{ upload_image_form() }}
+        {% from "macros.html" import image_preview %}
+        {{ image_preview() }}
+        <script src="{{ url_for('static', path='script.js') }}"></script>
+    </body>
+</html>
