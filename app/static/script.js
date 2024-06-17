@@ -1,7 +1,3 @@
-let imageFile;
-let imageWidth;
-let imageHeight;
-
 document.getElementById('image').addEventListener('change', function(event) {
     // Hide images and download link
     const downloadLink = document.getElementById('download-link');
@@ -13,25 +9,35 @@ document.getElementById('image').addEventListener('change', function(event) {
     const base64Preview = document.getElementById('ascii-art');
     base64Preview.style.display = "none"
 
+    // Show Sliders
+    const backgroundAlphaContainer = document.getElementById("background_alpha_container")
+    backgroundAlphaContainer.style.display = "block"
+    
+    const fontSizeContainer = document.getElementById("font_size_container")
+    fontSizeContainer.style.display = "block"
+
     imageFile = event.target.files[0];
 
-    // console.log("image file", imageFile)
     if (imageFile) {       
         // Show Image dimensions
         const img = new Image();
         img.src = URL.createObjectURL(imageFile);
-        img.onload = function() {
-            imageWidth = img.width;
-            imageHeight = img.height;
-            // console.log(`Image dimensions: ${imageWidth}x${imageHeight}`);
-        };
+        img.onload = function() {            
+            // Set max font size for slider
+            const fontSize = document.getElementById("font_size")
+            fontSize.max = Math.floor(parseInt(img.width) / 2)
+        
+            // const fontSizeMax = document.getElementById("font_size_max")
+            // fontSizeMax.textContent = fontSize.max
 
-        // Display Preview
-        const preview = document.getElementById('image-preview');
-        preview.src = URL.createObjectURL(imageFile);
-        preview.style.display = 'block';
-        preview.style.height = imageHeight
-        preview.style.width = imageWidth
+            // Set Image Preview Dimensions
+            const preview = document.getElementById('image-preview');
+            preview.src = URL.createObjectURL(imageFile);
+            preview.style.display = 'block';
+            preview.style.height = img.height
+            preview.style.width = img.width
+
+        };
 
     }
 });
@@ -61,15 +67,16 @@ document.getElementById('upload-form').addEventListener('submit', function(event
         if (data) {
             // Get Original Image Details
             const fileNameAndFormat = imageFile.name.split(".");
-			const fileFormat = fileNameAndFormat.pop();
-			const imageName = fileNameAndFormat.join("");
+            const fileFormat = fileNameAndFormat.pop();
+            const imageName = fileNameAndFormat.join("");
 
-            // Update ASCII Art
+            // Update ASCII Art Dimensions
+            const preview = document.getElementById('image-preview');
             const base64Preview = document.getElementById('ascii-art');
             base64Preview.src = `data:image/${"png"};base64,${data}`;
             base64Preview.style.display = 'block';
-            base64Preview.style.height = imageHeight
-            base64Preview.style.width = imageWidth
+            base64Preview.style.height = preview.style.height
+            base64Preview.style.width = preview.style.width
             
             // Update Download Button
             const downloadLink = document.getElementById('download-link');
@@ -83,3 +90,13 @@ document.getElementById('upload-form').addEventListener('submit', function(event
         console.error('Error:', error);
     });
 });
+
+document.getElementById("background_alpha").addEventListener("dragstart", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+})
+
+document.getElementById("font_size").addEventListener("dragstart", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+})

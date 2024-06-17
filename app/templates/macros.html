@@ -1,14 +1,22 @@
 {% macro upload_image_form() %}
     <form id="upload-form" action="/api/image_to_ascii" method="post" enctype="multipart/form-data">
-        <label for="image">Select image:</label>
-        <input type="file" id="image" name="image" accept="image/*" required>
-        <br><br>
-        <label for="background_alpha">Background Alpha:</label>
-        <input type="number" step="0.01" id="background_alpha" name="background_alpha" required>
-        <br><br>
-        <label for="font_size">Font Size:</label>
-        <input type="number" id="font_size" name="font_size" required>
-        <br><br>
+        <div>
+            <label for="image">Select image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>    
+        </div>
+        <div id="sliders">
+            <div id="background_alpha_container" style="display: none;" x-data="{bg_alpha_value: 0.5}">
+                <label for="background_alpha">Background Alpha:</label>
+                <p x-text="bg_alpha_value"></p>
+                <input type="range" step="0.01" min="0" x-model="bg_alpha_value" max="1" id="background_alpha" name="background_alpha" required>
+    
+            </div>
+            <div id="font_size_container" style="display: none;" x-data="{font_size_value: 12}">
+                <label for="font_size">Font Size:</label>
+                <p x-text="font_size_value"></p>
+                <input type="range" step="2" min="12" x-model="font_size_value" id="font_size" name="font_size"  required>
+            </div>     
+        </div>
         <button type="submit">Upload</button>
     </form>
 {% endmacro %}
@@ -17,14 +25,7 @@
     <article>
         <img id="image-preview" class="image-preview" src="#" alt="Image Preview" style="display: none;">
         <img id="ascii-art" class="image-preview" src="#" alt="ASCII Art" style="display: none;background: transparent;">
-
-        <a
-            id="download-link"
-            href="#"
-            download=""
-            title=""
-            style="display: none;"
-        >
+        <a id="download-link" href="#" download="" title="" style="display: none;">
             <button type="button">Download</button>
         </a>
     </article>
