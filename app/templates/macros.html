@@ -1,23 +1,25 @@
 {% macro upload_image_form() %}
-    <form id="upload-form" action="/api/image_to_ascii" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="image">Select image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>    
+    <form id="upload-form" class="w-9/12 m-auto flex flex-col space-y-4" action="/api/image_to_ascii" method="post" enctype="multipart/form-data">
+        <div class="flex flex-col">
+            <label for="image">Image</label>
+            <input type="file" id="image" class="py-2 block w-full" name="image" accept="image/*" required>    
         </div>
-        <div id="sliders">
-            <div id="background_alpha_container" style="display: none;" x-data="{bg_alpha_value: 0.5}">
-                <label for="background_alpha">Background Alpha:</label>
-                <p x-text="bg_alpha_value"></p>
-                <input type="range" step="0.01" min="0" x-model="bg_alpha_value" max="1" id="background_alpha" name="background_alpha" required>
-    
+
+        <div id="background_alpha_container" class="flex flex-col" style="display: none;" x-data="{bg_alpha_value: 0.5}">
+            <div class="flex justify-between">
+                <label for="background_alpha">Background Alpha</label>
+                <p x-text="bg_alpha_value" class="italic"></p>    
             </div>
-            <div id="font_size_container" style="display: none;" x-data="{font_size_value: 12}">
-                <label for="font_size">Font Size:</label>
-                <p x-text="font_size_value"></p>
-                <input type="range" step="2" min="12" x-model="font_size_value" id="font_size" name="font_size"  required>
-            </div>     
+            <input type="range" step="0.01" min="0" x-model="bg_alpha_value" max="1" id="background_alpha" class="p-2 block m-auto w-full" name="background_alpha" required> 
         </div>
-        <button type="submit">Upload</button>
+        <div id="font_size_container" class="flex flex-col" style="display: none;" x-data="{font_size_value: 12}">
+            <div class="flex justify-between">
+                <label for="font_size">Font Size</label>
+                <p x-text="font_size_value" class="italic"></p>    
+            </div>
+            <input type="range" step="2" min="12" x-model="font_size_value" id="font_size" class="p-2 block m-auto w-full" name="font_size"  required>
+        </div>     
+        <button type="submit" class="block p-2 my-2 mx-auto border-2 border-black">Upload</button>
     </form>
 {% endmacro %}
 
@@ -26,7 +28,7 @@
         <img id="image-preview" class="image-preview" src="#" alt="Image Preview" style="display: none;">
         <img id="ascii-art" class="image-preview" src="#" alt="ASCII Art" style="display: none;background: transparent;">
         <a id="download-link" href="#" download="" title="" style="display: none;">
-            <button type="button">Download</button>
+            <button type="button" class="block p-2 my-2 mx-auto border border-black">Download</button>
         </a>
     </article>
 {% endmacro %}
