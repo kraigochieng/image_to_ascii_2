@@ -3,11 +3,11 @@ document.getElementById('image').addEventListener('change', function(event) {
     const downloadLink = document.getElementById('download-link');
     downloadLink.style.display = "none"
 
-    const preview = document.getElementById('image-preview');
-    preview.style.display = "none"
+    const previewFigure = document.getElementById('image-preview-figure');
+    previewFigure.style.display = "none"
 
-    const base64Preview = document.getElementById('ascii-art');
-    base64Preview.style.display = "none"
+    const base64PreviewFigure = document.getElementById('ascii-art-figure');
+    base64PreviewFigure.style.display = "none"
 
     // Show Sliders
     const backgroundAlphaContainer = document.getElementById("background_alpha_container")
@@ -32,8 +32,9 @@ document.getElementById('image').addEventListener('change', function(event) {
 
             // Set Image Preview Dimensions
             const preview = document.getElementById('image-preview');
+            const previewFigure = document.getElementById('image-preview-figure');            
             preview.src = URL.createObjectURL(imageFile);
-            preview.style.display = 'block';
+            previewFigure.style.display = 'block';
             preview.style.height = img.height
             preview.style.width = img.width
 
@@ -73,8 +74,9 @@ document.getElementById('upload-form').addEventListener('submit', function(event
             // Update ASCII Art Dimensions
             const preview = document.getElementById('image-preview');
             const base64Preview = document.getElementById('ascii-art');
+            const base64PreviewFigure = document.getElementById('ascii-art-figure');
             base64Preview.src = `data:image/${"png"};base64,${data}`;
-            base64Preview.style.display = 'block';
+            base64PreviewFigure.style.display = 'block';
             base64Preview.style.height = preview.style.height
             base64Preview.style.width = preview.style.width
             

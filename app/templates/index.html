@@ -11,8 +11,11 @@
     </head>
 
     <body>
-        <h1 class="text-center p-4 font-bold">Image To ASCII Converter</h1>
-        {% from "macros.html" import upload_image_form %} {{ upload_image_form() }}
-        {% from "macros.html" import image_preview %} {{ image_preview() }}
+        <h1 class="text-center text-3xl lg:text-4xl p-4 lg:p-8 font-bold bg-stone-900 text-white mb-4">Image To ASCII Converter</h1>
+        {% from "macros.html" import upload_image_form %}{% from "macros.html" import image_preview %} 
+        <div>
+            {{ upload_image_form() }}
+            {{ image_preview() }}    
+        </div>
     </body>
 </html>

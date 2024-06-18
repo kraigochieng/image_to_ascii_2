@@ -117,7 +117,7 @@ async def convert_image_to_ascii(image: UploadFile, font_size: int, background_a
 
     ascii_img_base64 = base64.b64encode(ascii_img_bytes).decode()
     # data_url = f""
-    print("ASCII base 64 stuff", ascii_img_base64)
+    # print("ASCII base 64 stuff", ascii_img_base64)
 
     # return FileResponse(temp_file.name, media_type="image/png")
     return JSONResponse(content=ascii_img_base64)
