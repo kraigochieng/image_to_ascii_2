@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 from fastapi import UploadFile
-from fastapi.responses import StreamingResponse, FileResponse, JSONResponse
+from fastapi.responses import JSONResponse
 from .convert_image_to_ascii_utils import get_small_scale_dimensions
 from io import BytesIO
 import os
