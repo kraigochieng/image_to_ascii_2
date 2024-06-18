@@ -1,4 +1,5 @@
-from fastapi import APIRouter, UploadFile, Form
+from fastapi import APIRouter, Form, UploadFile
+
 from ..services.convert_image_to_ascii import convert_image_to_ascii
 
 router = APIRouter(prefix="/api/image_to_ascii")

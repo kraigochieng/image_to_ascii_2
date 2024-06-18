@@ -1,12 +1,14 @@
-from PIL import Image, ImageDraw, ImageFont
+import base64
+import os
+from io import BytesIO
+from tempfile import NamedTemporaryFile
+
+from dotenv import load_dotenv
 from fastapi import UploadFile
 from fastapi.responses import JSONResponse
+from PIL import Image, ImageDraw, ImageFont
+
 from .convert_image_to_ascii_utils import get_small_scale_dimensions
-from io import BytesIO
-import os
-from dotenv import load_dotenv
-from tempfile import NamedTemporaryFile
-import base64
 
 
 async def convert_image_to_ascii(
