@@ -9,7 +9,9 @@ from tempfile import NamedTemporaryFile
 import base64
 
 
-async def convert_image_to_ascii(image: UploadFile, font_size: int, background_alpha: float):
+async def convert_image_to_ascii(
+    image: UploadFile, font_size: int, background_alpha: float
+):
     load_dotenv()
 
     # The font size is a string first dou to it being part of a multipart form
@@ -36,7 +38,7 @@ async def convert_image_to_ascii(image: UploadFile, font_size: int, background_a
     original_img_size = img.size
     # print(img.size)
 
-    new_width,  new_height = get_small_scale_dimensions(img.size, font_size)
+    new_width, new_height = get_small_scale_dimensions(img.size, font_size)
     # print("New:", new_width, new_height)
     img = img.resize((new_width, new_height))
 
@@ -53,14 +55,18 @@ async def convert_image_to_ascii(image: UploadFile, font_size: int, background_a
     # font_path = "../assets/fonts/Roboto/Roboto-Black.ttf"
     current_directory = os.path.dirname(__file__)
     app_directory = os.path.dirname(current_directory)
-    font_path = os.path.join(app_directory, "assets", "fonts", "Roboto", "Roboto-Black.ttf")
+    font_path = os.path.join(
+        app_directory, "assets", "fonts", "Roboto", "Roboto-Black.ttf"
+    )
     # print("current directory", current_directory)
     # print("app directory", app_directory)
 
     font = ImageFont.truetype(font_path, font_size)
 
     # Blank Image
-    ascii_image = Image.new("RGBA", (new_width * font_size, new_height * font_size), "black")
+    ascii_image = Image.new(
+        "RGBA", (new_width * font_size, new_height * font_size), "black"
+    )
     ascii_draw = ImageDraw.Draw(ascii_image)
 
     y_position = 0
@@ -84,11 +90,16 @@ async def convert_image_to_ascii(image: UploadFile, font_size: int, background_a
             rectangle_color = (r, g, b, int(alpha * background_alpha))
 
             # Draw the rectangle just behind the character
-            ascii_draw.rectangle([rect_x, rect_y, rect_x + rect_width, rect_y + rect_height], fill=rectangle_color)
+            ascii_draw.rectangle(
+                [rect_x, rect_y, rect_x + rect_width, rect_y + rect_height],
+                fill=rectangle_color,
+            )
 
             text_colour = (r, g, b, alpha)
             # Adding Letter to Image
-            ascii_draw.text((x * font_size, y_position), char, font=font, fill=text_colour)
+            ascii_draw.text(
+                (x * font_size, y_position), char, font=font, fill=text_colour
+            )
 
         y_position += font_size
 
@@ -96,9 +107,7 @@ async def convert_image_to_ascii(image: UploadFile, font_size: int, background_a
     ascii_image = ascii_image.resize(original_img_size, resample=Image.NEAREST)
     # ascii_image.show()
 
-    
     with NamedTemporaryFile(delete=False) as temp_file:
-
         ascii_img_byte_array = BytesIO()
         ascii_image.save(ascii_img_byte_array, format="PNG")
         ascii_img_bytes = ascii_img_byte_array.getvalue()
@@ -110,10 +119,8 @@ async def convert_image_to_ascii(image: UploadFile, font_size: int, background_a
 
     # with bf.BlobFile(temp_file.name) as f:
     #     print(f.name)
-        # print("blob url: ", f.get_url())
-        # print("content: ", f.content())
-    
-    
+    # print("blob url: ", f.get_url())
+    # print("content: ", f.content())
 
     ascii_img_base64 = base64.b64encode(ascii_img_bytes).decode()
     # data_url = f""

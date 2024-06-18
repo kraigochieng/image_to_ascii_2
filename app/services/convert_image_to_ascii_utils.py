@@ -2,9 +2,9 @@ import math
 
 
 def get_appromixate_dimension(dimension, factor):
-    sections = (dimension / factor)
+    sections = dimension / factor
     weight = sections % 1
-    if (weight < 0.5):
+    if weight < 0.5:
         return math.floor(sections) * factor
     else:
         return math.ceil(sections) * factor

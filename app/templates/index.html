@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image to ASCII Converter</title>
-    <script src="{{ url_for('static', path='script.js') }}" defer></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="{{ url_for('static', path='styles.css')}}" rel="stylesheet" />
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Image to ASCII Converter</title>
+		<script src="{{ url_for('static', path='script.js') }}" defer></script>
+		<script src="//unpkg.com/alpinejs" defer></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			href="{{ url_for('static', path='styles.css')}}"
+			rel="stylesheet"
+		/>
+	</head>
 
-  <body>
-    <h1
-      class="text-center text-3xl lg:text-4xl p-4 lg:p-8 font-bold bg-stone-900 text-white mb-4"
-    >
-      Image To ASCII Converter
-    </h1>
-    {% from "macros.html" import upload_image_form %}{% from "macros.html"
-    import image_preview %}
-    <div>{{ upload_image_form() }} {{ image_preview() }}</div>
-    <div
-      id="loading"
-      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 text-white font-bold text-3xl hidden"
-    >
-      <p>Loading...</p>
-    </div>
-  </body>
+	<body>
+		<h1
+			class="text-center text-3xl lg:text-4xl p-4 lg:p-8 font-bold bg-stone-900 text-white mb-4"
+		>
+			Image To ASCII Converter
+		</h1>
+		{% from "macros.html" import upload_image_form %}{% from "macros.html"
+		import image_preview %}
+		<div>{{ upload_image_form() }} {{ image_preview() }}</div>
+		<div
+			id="loading"
+			class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 text-white font-bold text-3xl hidden"
+		>
+			<p>Loading...</p>
+		</div>
+	</body>
 </html>
