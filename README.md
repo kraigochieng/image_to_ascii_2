@@ -2,6 +2,12 @@
 
 `image_to_ascii_2` is a Python application that converts images into ASCII art. It processes image files and outputs a text-based representation using ASCII characters.
 
+# Web Screenshot
+
+A screenshot of the web interface is available in the `images/web-screenshot` directory:
+
+![Web Screenshot](docs/images/web-screenshot.png)
+
 # Features
 
 -   Convert images (JPEG, PNG, etc.) to ASCII art
