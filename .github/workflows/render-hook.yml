@@ -1,19 +1,19 @@
-name: Render CI
+# name: Render CI
 
-on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+# on:
+#     push:
+#         branches: ["main"]
+#     pull_request:
+#         branches: ["main"]
 
-jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
+# jobs:
+#     build:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - uses: actions/checkout@v4
 
-            - name: Deploy Render Web Service
-              env:
-                  deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
-              run: |
-                  curl "$deploy_url"
+#             - name: Deploy Render Web Service
+#               env:
+#                   deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+#               run: |
+#                   curl "$deploy_url"
